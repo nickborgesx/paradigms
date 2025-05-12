@@ -1,18 +1,18 @@
 import ply.yacc as yacc  # type: ignore
 from lexer import tokens  # type: ignore # noqa
 
-# Lista para armazenar os artigos extraídos
-articles = []
 
-# Objeto temporário para armazenar um artigo
-current_article = {}
-
-
-def p_start(p):  # Regra inicial: um ou mais elementos
+def p_start(p):
     '''start : elements'''
-    p[0] = p[1]
+    # Remover último dicionário vazio, se existir
+    if isinstance(p[1][-1], dict) and not p[1][-1]:
+        p[1].pop()
 
-# Lista de elementos
+    for article in p[1]:
+        for field in ['title', 'author', 'abstract', 'year']:
+            if field not in article:
+                article[field] = ['']
+    p[0] = p[1]
 
 
 def p_elements(p):
@@ -20,35 +20,44 @@ def p_elements(p):
                 | element'''
     if len(p) == 3:
         p[0] = p[1]
-        p[0].append(p[2])
+        field, value = p[2]
+
+        if not p[0] or not isinstance(p[0][-1], dict):
+            p[0].append({})  # inicia novo artigo
+
+        current = p[0][-1]
+        if field not in current:
+            current[field] = []
+
+        # adiciona valor ao campo
+        if isinstance(value, list):
+            current[field].extend(value)
+        else:
+            current[field].append(value)
+
+        if field == 'year':
+            # fecha o artigo e prepara para o próximo
+            p[0].append({})
+
     else:
-        p[0] = [p[1]]
+        field, value = p[1]
+        article = {field: value if isinstance(value, list) else [value]}
+        p[0] = [article]
+        if field == 'year':
+            p[0].append({})
 
 
-def p_element(p):  # Elementos que armazenamos diretamente
+def p_element(p):
     '''element : TITLE_OPEN TEXT TITLE_CLOSE
                | ABSTRACT_OPEN TEXT ABSTRACT_CLOSE
                | YEAR_OPEN TEXT YEAR_CLOSE'''
-    tag = p.slice[1].type.lower().replace(
-        '_open', '')  # exemplo: TITLE_OPEN -> title
-    global current_article
-    if tag not in current_article:
-        current_article[tag] = []
-    current_article[tag].append(p[2])
-
-    # Quando ano for encontrado, salva o artigo
-    if tag == 'year':
-        articles.append(current_article)
-        current_article = {}
+    tag = p.slice[1].type.lower().replace('_open', '')
+    p[0] = (tag, p[2])  # ← devolvemos a tupla (campo, valor)
 
 
-def p_element_authorlist(p):  # Elemento de lista de autores
+def p_element_authorlist(p):
     '''element : AUTHORLIST_OPEN AUTHORS AUTHORLIST_CLOSE'''
-    global current_article
-    if 'author' not in current_article:
-        current_article['author'] = []
-    # p[2] é a lista de autores extraída
-    current_article['author'].extend(p[2])
+    p[0] = ('author', p[2])  # ← também devolvemos tupla
 
 
 def p_AUTHORS_multiple(p):  # Lista de autores
@@ -61,16 +70,25 @@ def p_AUTHORS_single(p):
     p[0] = [p[1]]
 
 
-def p_author(p):  # Um único autor
-    '''author : AUTHOR_OPEN author_data AUTHOR_CLOSE'''
+def p_author(p):
+    '''
+    author : AUTHOR_OPEN lastname forename AUTHOR_CLOSE
+    '''
+    p[0] = f"{p[3]} {p[2]}"
+
+
+def p_lastname(p):
+    '''
+    lastname : LASTNAME_OPEN TEXT LASTNAME_CLOSE
+    '''
     p[0] = p[2]
 
 
-def p_author_data(p):  # Dados do autor: forename + lastname
-    '''author_data : FORENAME_OPEN TEXT FORENAME_CLOSE LASTNAME_OPEN TEXT LASTNAME_CLOSE'''
-    fore = p[2]
-    last = p[5]
-    p[0] = f'{fore} {last}'
+def p_forename(p):
+    '''
+    forename : FORENAME_OPEN TEXT FORENAME_CLOSE
+    '''
+    p[0] = p[2]
 
 
 def p_error(p):  # Tratamento de erro
