@@ -15,10 +15,6 @@ tokens = (
 # Expressões regulares para identificar cada tag de abertura e fechamento
 t_TITLE_OPEN = r'<Title>'
 t_TITLE_CLOSE = r'</Title>'
-t_AUTHORLIST_OPEN = r'<AuthorList[^>]*>'
-t_AUTHORLIST_CLOSE = r'</AuthorList>'
-t_AUTHOR_OPEN = r'<Author[^>]*>'
-t_AUTHOR_CLOSE = r'</Author>'
 t_LASTNAME_OPEN = r'<LastName>'
 t_LASTNAME_CLOSE = r'</LastName>'
 t_FORENAME_OPEN = r'<ForeName>'
@@ -27,6 +23,27 @@ t_ABSTRACT_OPEN = r'<Abstract>'
 t_ABSTRACT_CLOSE = r'</Abstract>'
 t_YEAR_OPEN = r'<Year>'
 t_YEAR_CLOSE = r'</Year>'
+
+
+def t_AUTHORLIST_OPEN(t):
+    r'<AuthorList(\s+[^>]*)?>'
+    return t
+
+
+def t_AUTHORLIST_CLOSE(t):
+    r'</AuthorList>'
+    return t
+
+
+def t_AUTHOR_OPEN(t):
+    r'<Author(\s+[^>]*)?>'
+    return t
+
+
+def t_AUTHOR_CLOSE(t):
+    r'</Author>'
+    return t
+
 
 # Ignorar espaços e quebras de linha
 t_ignore = ' \t\n'
