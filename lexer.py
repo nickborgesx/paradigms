@@ -1,37 +1,53 @@
-import ply.lex as lex
+import ply.lex as lex  # type: ignore
 
-# Lista de tokens que vamos usar
+# Lista de tokens reconhecidos pelo lexer
 tokens = (
     'TITLE_OPEN', 'TITLE_CLOSE',
+    'AUTHORLIST_OPEN', 'AUTHORLIST_CLOSE',
     'AUTHOR_OPEN', 'AUTHOR_CLOSE',
+    'LASTNAME_OPEN', 'LASTNAME_CLOSE',
+    'FORENAME_OPEN', 'FORENAME_CLOSE',
     'ABSTRACT_OPEN', 'ABSTRACT_CLOSE',
     'YEAR_OPEN', 'YEAR_CLOSE',
-    'TEXT'
+    'TEXT',
 )
 
-# Expressões regulares para identificar as tags
-t_TITLE_OPEN = r'<title>'
-t_TITLE_CLOSE = r'</title>'
-t_AUTHOR_OPEN = r'<author>'
-t_AUTHOR_CLOSE = r'</author>'
-t_ABSTRACT_OPEN = r'<abstract>'
-t_ABSTRACT_CLOSE = r'</abstract>'
-t_YEAR_OPEN = r'<year>'
-t_YEAR_CLOSE = r'</year>'
+# Expressões regulares para identificar cada tag de abertura e fechamento
+t_TITLE_OPEN = r'<Title>'
+t_TITLE_CLOSE = r'</Title>'
+t_AUTHORLIST_OPEN = r'<AuthorList[^>]*>'
+t_AUTHORLIST_CLOSE = r'</AuthorList>'
+t_AUTHOR_OPEN = r'<Author[^>]*>'
+t_AUTHOR_CLOSE = r'</Author>'
+t_LASTNAME_OPEN = r'<LastName>'
+t_LASTNAME_CLOSE = r'</LastName>'
+t_FORENAME_OPEN = r'<ForeName>'
+t_FORENAME_CLOSE = r'</ForeName>'
+t_ABSTRACT_OPEN = r'<Abstract>'
+t_ABSTRACT_CLOSE = r'</Abstract>'
+t_YEAR_OPEN = r'<Year>'
+t_YEAR_CLOSE = r'</Year>'
 
 # Ignorar espaços e quebras de linha
 t_ignore = ' \t\n'
 
-# Texto entre as tags (qualquer coisa que não seja uma tag)
-def t_TEXT(t):
+
+def t_TEXT(t):  # Texto entre tags (qualquer coisa que não seja '<' ou '>')
     r'[^<>]+'
     t.value = t.value.strip()
     return t
 
-# Tratamento de erro léxico
-def t_error(t):
-    print(f"Caractere ilegal: {t.value[0]}")
+
+def t_error(t):  # Tratamento de erro léxico
+    # Ignora tags XML desconhecidas
+    if t.value.startswith("<"):
+        end = t.value.find(">")
+        if end != -1:
+            t.lexer.skip(end + 1)
+            return
+    print(f"Illegal character {t.value[0]!r}")
     t.lexer.skip(1)
+
 
 # Criar o lexer
 lexer = lex.lex()
