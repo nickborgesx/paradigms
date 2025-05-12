@@ -1,11 +1,11 @@
-from parser import parser, articles
+from parser import parser
 
 # Lê o arquivo XML
-with open('sample.xml', 'r') as f:
+with open('data/sample_v1.xml', 'r') as f:
     data = f.read()
 
-# Faz o parsing
-parser.parse(data)
+# Faz o parsing e obtém os artigos
+articles = parser.parse(data)
 
 # Mostra os artigos extraídos
 for i, art in enumerate(articles, 1):
