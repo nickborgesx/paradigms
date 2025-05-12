@@ -1,0 +1,106 @@
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" IndexingMethod="Manual" Owner="NLM">
+      <PMID Version="1">11420574</PMID>
+      <DateCompleted>
+        <Year>2001</Year>
+        <Month>07</Month>
+        <Day>26</Day>
+      </DateCompleted>
+      <DateRevised>
+        <Year>2025</Year>
+        <Month>01</Month>
+        <Day>17</Day>
+      </DateRevised>
+      <Article PubModel="Print">
+        <Journal>
+          <ISSN IssnType="Print">0828-282X</ISSN>
+          <JournalIssue CitedMedium="Print">
+            <Volume>17</Volume>
+            <Issue>6</Issue>
+            <PubDate>
+              <Year>2001</Year>
+              <Month>Jun</Month>
+            </PubDate>
+          </JournalIssue>
+          <Title>The Canadian journal of cardiology</Title>
+          <ISOAbbreviation>Can J Cardiol</ISOAbbreviation>
+        </Journal>
+        <ArticleTitle>Framework Convention Alliance: building support for global tobacco control.</ArticleTitle>
+        <Pagination>
+          <MedlinePgn>647-8</MedlinePgn>
+        </Pagination>
+        <AuthorList CompleteYN="Y">
+          <Author ValidYN="Y">
+            <LastName>LeGrand</LastName>
+            <ForeName>C</ForeName>
+            <Initials>C</Initials>
+            <AffiliationInfo>
+              <Affiliation>Heart and Stroke Foundation of Canada, Ottawa, Canada.</Affiliation>
+            </AffiliationInfo>
+          </Author>
+        </AuthorList>
+        <Language>eng</Language>
+        <PublicationTypeList>
+          <PublicationType UI="D016428">Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+      <MedlineJournalInfo>
+        <Country>England</Country>
+        <MedlineTA>Can J Cardiol</MedlineTA>
+        <NlmUniqueID>8510280</NlmUniqueID>
+        <ISSNLinking>0828-282X</ISSNLinking>
+      </MedlineJournalInfo>
+      <CitationSubset>IM</CitationSubset>
+      <MeshHeadingList>
+        <MeshHeading>
+          <DescriptorName UI="D006801" MajorTopicYN="N">Humans</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D014943" MajorTopicYN="Y">Global Health</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D006293" MajorTopicYN="Y">Health Promotion</DescriptorName>
+          <QualifierName UI="Q000458" MajorTopicYN="N">organization &amp; administration</QualifierName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D007390" MajorTopicYN="Y">International Agencies</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D000074606" MajorTopicYN="Y">Smoking Prevention</DescriptorName>
+        </MeshHeading>
+        <MeshHeading>
+          <DescriptorName UI="D000092843" MajorTopicYN="Y">Tobacco Control</DescriptorName>
+        </MeshHeading>
+      </MeshHeadingList>
+    </MedlineCitation>
+    <PubmedData>
+      <History>
+        <PubMedPubDate PubStatus="pubmed">
+          <Year>2001</Year>
+          <Month>6</Month>
+          <Day>23</Day>
+          <Hour>10</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="medline">
+          <Year>2001</Year>
+          <Month>7</Month>
+          <Day>28</Day>
+          <Hour>10</Hour>
+          <Minute>1</Minute>
+        </PubMedPubDate>
+        <PubMedPubDate PubStatus="entrez">
+          <Year>2001</Year>
+          <Month>6</Month>
+          <Day>23</Day>
+          <Hour>10</Hour>
+          <Minute>0</Minute>
+        </PubMedPubDate>
+      </History>
+      <PublicationStatus>ppublish</PublicationStatus>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">11420574</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
