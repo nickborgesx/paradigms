@@ -2,6 +2,7 @@ from parser import parser
 
 # Lê o arquivo XML
 with open('data/sample.xml', 'r') as f:
+
     data = f.read()
 
 # Faz o parsing e obtém os artigos
