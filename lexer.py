@@ -7,6 +7,7 @@ tokens = (
     'AUTHOR_OPEN', 'AUTHOR_CLOSE',
     'LASTNAME_OPEN', 'LASTNAME_CLOSE',
     'FORENAME_OPEN', 'FORENAME_CLOSE',
+    'ABSTRACTTEXT_OPEN', 'ABSTRACTTEXT_CLOSE',
     'ABSTRACT_OPEN', 'ABSTRACT_CLOSE',
     'YEAR_OPEN', 'YEAR_CLOSE',
     'TEXT',
@@ -21,8 +22,24 @@ t_FORENAME_OPEN = r'<ForeName>'
 t_FORENAME_CLOSE = r'</ForeName>'
 t_ABSTRACT_OPEN = r'<Abstract>'
 t_ABSTRACT_CLOSE = r'</Abstract>'
+t_ABSTRACTTEXT_CLOSE = r'</AbstractText>'
 t_YEAR_OPEN = r'<Year>'
 t_YEAR_CLOSE = r'</Year>'
+
+
+def t_COPYRIGHT_INFORMATION(t):
+    r'<CopyrightInformation>.*?</CopyrightInformation>'
+    return None  # Retorna None para ignorar o conteúdo
+
+
+def t_MEDLINEJOURNALINFO(t):
+    r'<MedlineJournalInfo>.*?</MedlineJournalInfo>'
+    return None
+
+
+def t_ABSTRACTTEXT_OPEN(t):
+    r'<AbstractText(\s+[^>]*)?>'
+    return t
 
 
 def t_AUTHORLIST_OPEN(t):

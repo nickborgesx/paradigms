@@ -2,14 +2,16 @@
     <Title>Neural networks in medical diagnosis</Title>
     <AuthorList>
         <Author>
-            <ForeName>John</ForeName>
             <LastName>Smith</LastName>
+            <ForeName>John</ForeName>
         </Author>
         <Author>
-            <ForeName>Anna</ForeName>
             <LastName>Brown</LastName>
+            <ForeName>Anna</ForeName>
         </Author>
     </AuthorList>
-    <Abstract>Artificial neural networks are a type of machine learning model used in various medical tasks.</Abstract>
+    <Abstract>
+        <AbstractText>Artificial neural networks are a type of machine learning model used in various medical tasks.</AbstractText>
+    </Abstract>
     <Year>2021</Year>
 </PubmedArticle>

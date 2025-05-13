@@ -1,5 +1,20 @@
-<title>Understanding cancer metabolism</title>
-<author>Smith</author>
-<author>Doe</author>
-<abstract>Metabolic pathways are essential in cancer development.</abstract>
-<year>2022</year>
+<PubmedArticle>
+    <Title>Understanding cancer metabolism</Title>
+    <AuthorList CompleteYN="Y">
+        <Author ValidYN="Y">
+            <LastName>LeGrand</LastName>
+            <ForeName>C</ForeName>
+        </Author>
+        <Author ValidYN="Y">
+            <LastName>Smith</LastName>
+            <ForeName>John</ForeName>
+        </Author>
+    </AuthorList>
+        <Abstract>
+          <AbstractText>Metabolic pathways are essential in cancer development.</AbstractText>
+          <AbstractText Label="OBJECTIVES" NlmCategory="OBJECTIVE">This study evaluated merchant compliance with laws prohibiting the sale of tobacco to minors in Massachusetts.</AbstractText>
+          <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">Measured compliance rates are strongly influenced by the age of the youths used to purchase tobacco.</AbstractText>
+          <CopyrightInformation>Copyright 2001 by W.B. Saunders Company.</CopyrightInformation>
+        </Abstract>
+    <Year>2022</Year>
+</PubmedArticle>

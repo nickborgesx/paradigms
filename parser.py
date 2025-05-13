@@ -29,30 +29,29 @@ def p_elements(p):
         if field not in current:
             current[field] = []
 
-        # adiciona valor ao campo
         if isinstance(value, list):
-            current[field].extend(value)
+            for v in value:
+                if v not in current[field]:
+                    current[field].append(v)
         else:
-            current[field].append(value)
-
-        if field == 'year':
-            # fecha o artigo e prepara para o próximo
-            p[0].append({})
-
+            if value not in current[field]:
+                current[field].append(value)
     else:
         field, value = p[1]
         article = {field: value if isinstance(value, list) else [value]}
         p[0] = [article]
-        if field == 'year':
-            p[0].append({})
 
 
 def p_element(p):
     '''element : TITLE_OPEN TEXT TITLE_CLOSE
-               | ABSTRACT_OPEN TEXT ABSTRACT_CLOSE
-               | YEAR_OPEN TEXT YEAR_CLOSE'''
+                | YEAR_OPEN TEXT YEAR_CLOSE'''
     tag = p.slice[1].type.lower().replace('_open', '')
-    p[0] = (tag, p[2])  # ← devolvemos a tupla (campo, valor)
+
+    if len(p) == 4:
+        p[0] = (tag, p[2])  # Ex: <Title>Texto</Title>
+    else:
+        # Ex: <Abstract><AbstractText>Texto</AbstractText></Abstract>
+        p[0] = (tag, p[3])
 
 
 def p_element_authorlist(p):
@@ -89,6 +88,26 @@ def p_forename(p):
     forename : FORENAME_OPEN TEXT FORENAME_CLOSE
     '''
     p[0] = p[2]
+
+
+def p_element_abstract_multiple(p):
+    '''element : ABSTRACT_OPEN abstract_texts ABSTRACT_CLOSE'''
+    p[0] = ('abstract', p[2])  # Agora, passamos todos os textos para uma lista
+
+
+def p_abstract_texts_multiple(p):
+    '''abstract_texts : abstract_texts abstract_text'''
+    p[0] = p[1] + [p[2]]  # Adiciona um novo abstract à lista
+
+
+def p_abstract_texts_single(p):
+    '''abstract_texts : abstract_text'''
+    p[0] = [p[1]]  # Cria uma lista de um único abstract
+
+
+def p_abstract_text(p):
+    '''abstract_text : ABSTRACTTEXT_OPEN TEXT ABSTRACTTEXT_CLOSE'''
+    p[0] = p[2]  # Captura o texto do abstract
 
 
 def p_error(p):  # Tratamento de erro

@@ -1,7 +1,8 @@
 from parser import parser
 
 # Lê o arquivo XML
-with open('data/sample_v1.xml', 'r') as f:
+with open('data/sample.xml', 'r') as f:
+
     data = f.read()
 
 # Faz o parsing e obtém os artigos
@@ -12,5 +13,5 @@ for i, art in enumerate(articles, 1):
     print(f"\nArtigo {i}:")
     print(f"  Título:   {art.get('title', [''])[0]}")
     print(f"  Autores:  {', '.join(art.get('author', []))}")
-    print(f"  Abstract: {art.get('abstract', [''])[0]}")
+    print(f"  Abstract: {' '.join(art.get('abstract', []))}")
     print(f"  Ano:      {art.get('year', [''])[0]}")
