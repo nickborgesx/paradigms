@@ -9,6 +9,7 @@ tokens = (
     'FORENAME_OPEN', 'FORENAME_CLOSE',
     'ABSTRACTTEXT_OPEN', 'ABSTRACTTEXT_CLOSE',
     'ABSTRACT_OPEN', 'ABSTRACT_CLOSE',
+    'DATECOMPLETED_OPEN', 'DATECOMPLETED_CLOSE',
     'YEAR_OPEN', 'YEAR_CLOSE',
     'TEXT',
 )
@@ -23,8 +24,41 @@ t_FORENAME_CLOSE = r'</ForeName>'
 t_ABSTRACT_OPEN = r'<Abstract>'
 t_ABSTRACT_CLOSE = r'</Abstract>'
 t_ABSTRACTTEXT_CLOSE = r'</AbstractText>'
+t_DATECOMPLETED_OPEN = r'<DateCompleted>'
+t_DATECOMPLETED_CLOSE = r'</DateCompleted>'
 t_YEAR_OPEN = r'<Year>'
 t_YEAR_CLOSE = r'</Year>'
+
+
+def t_LANGUAGE(t):
+    r'<Language>.*?</Language>'
+    return None
+
+
+def t_ISSN(t):
+    r'<ISSN.*?>.*?</ISSN>'
+    return None
+
+
+def t_IGNORE_TAG(t):
+    r'''
+    </?(?:PubmedArticleSet|MedlineCitation|DateRevised|PubmedData|History|PubMedPubDate|
+    PublicationStatus|ArticleIdList|ArticleId|Journal|JournalIssue|PubDate|Pagination|
+    MedlineJournalInfo|CitationSubset|MeshHeadingList|MeshHeading|DescriptorName|
+    QualifierName|Initials|AffiliationInfo|Affiliation|PublicationTypeList|
+    PublicationType|Country|MedlineTA|NlmUniqueID|ISSNLinking|ISOAbbreviation|PMID)(?: [^>]*)?>
+    '''
+    return None
+
+
+def t_DAY(t):
+    r'<Day>.*?</Day>'
+    return None
+
+
+def t_MONTH(t):
+    r'<Month>.*?</Month>'
+    return None
 
 
 def t_COPYRIGHT_INFORMATION(t):

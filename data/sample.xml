@@ -10,11 +10,17 @@
             <ForeName>John</ForeName>
         </Author>
     </AuthorList>
-        <Abstract>
-          <AbstractText>Metabolic pathways are essential in cancer development.</AbstractText>
-          <AbstractText Label="OBJECTIVES" NlmCategory="OBJECTIVE">This study evaluated merchant compliance with laws prohibiting the sale of tobacco to minors in Massachusetts.</AbstractText>
-          <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">Measured compliance rates are strongly influenced by the age of the youths used to purchase tobacco.</AbstractText>
-          <CopyrightInformation>Copyright 2001 by W.B. Saunders Company.</CopyrightInformation>
-        </Abstract>
-    <Year>2022</Year>
+    <Abstract>
+        <AbstractText>Metabolic pathways are essential in cancer development.</AbstractText>
+        <AbstractText Label="OBJECTIVES" NlmCategory="OBJECTIVE">This study evaluated merchant compliance with laws
+            prohibiting the sale of tobacco to minors in Massachusetts.</AbstractText>
+        <AbstractText Label="CONCLUSIONS" NlmCategory="CONCLUSIONS">Measured compliance rates are strongly influenced by
+            the age of the youths used to purchase tobacco.</AbstractText>
+        <CopyrightInformation>Copyright 2001 by W.B. Saunders Company.</CopyrightInformation>
+    </Abstract>
+    <DateCompleted>
+        <Year>2001</Year>
+        <Month>07</Month>
+        <Day>26</Day>
+    </DateCompleted>
 </PubmedArticle>
