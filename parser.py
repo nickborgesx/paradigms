@@ -110,6 +110,11 @@ def p_abstract_text(p):
     p[0] = p[2]  # Captura o texto do abstract
 
 
+def p_element_date_completed(p):
+    '''element : DATECOMPLETED_OPEN YEAR_OPEN TEXT YEAR_CLOSE DATECOMPLETED_CLOSE'''
+    p[0] = ('year', [p[3]])
+
+
 def p_error(p):  # Tratamento de erro
     if p:
         print(f"Erro de sintaxe! Token inesperado: {p}")
