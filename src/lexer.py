@@ -106,6 +106,12 @@ def t_TEXT(t):  # Texto entre tags (qualquer coisa que não seja '<' ou '>')
     return t
 
 
+# Defina uma regra para que seja possível rastrear o números de linha
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+
 def t_error(t):  # Tratamento de erro léxico
     # Ignora tags XML desconhecidas
     if t.value.startswith("<"):

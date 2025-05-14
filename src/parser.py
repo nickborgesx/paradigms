@@ -1,5 +1,5 @@
 import ply.yacc as yacc  # type: ignore
-from lexer import tokens  # type: ignore # noqa
+from src.lexer import tokens  # type: ignore # noqa
 
 
 def p_start(p):
